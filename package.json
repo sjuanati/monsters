@@ -10,10 +10,11 @@
   "author": "SJS",
   "license": "ISC",
   "dependencies": {
+    "@openzeppelin/contracts": "^3.4.0",
     "@openzeppelin/test-helpers": "^0.5.10",
     "@truffle/hdwallet-provider": "^1.2.2",
     "@types/node": "^14.14.31",
     "dotenv": "^8.2.0",
-    "truffle-plugin-verify": "^0.5.4"
+    "truffle-plugin-verify": "^0.5.5"
   }
 }
