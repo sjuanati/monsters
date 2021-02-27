@@ -16,6 +16,9 @@ contract Monsters is ERC721, Ownable {
 
     // Base URI
     string private _baseURIextended;
+    
+    // tokenID counter
+    uint256 public counterId = 1;
 
     constructor(string memory _name, string memory _symbol)
         ERC721(_name, _symbol)
@@ -56,16 +59,15 @@ contract Monsters is ERC721, Ownable {
         // If there is a baseURI but no tokenURI, concatenate the tokenID to the baseURI.
         return string(abi.encodePacked(base, tokenId.toString()));
     }
-
+    
     function mint(
-        address _to,
-        uint256 _tokenId,
-        string memory tokenURI_
+        address _to
     ) external onlyOwner() {
-        _mint(_to, _tokenId);
-        _setTokenURI(_tokenId, tokenURI_);
+        _mint(_to, counterId);
+        _setTokenURI(counterId, counterId.toString());
+        counterId += 1;
     }
-
+    
     function burn(uint256 tokenId) external onlyOwner() {
         _burn(tokenId);
     }
