@@ -12,12 +12,17 @@ import "./token/ERC721/ERC721.sol";
 contract Monsters is Ownable {
     
     NFT public nft;
+    //TODO: manage counter to mint monsters
+    //TODO2: ability to mint in batch mode
     
-    function create(string memory _name, string memory _symbol) external onlyOwner() {
-        // TODO: Check IPFS hash in mapping(uint256 => uint8) to prevent issuing tokens mapped to previous hashes
+    constructor(string memory _name, string memory _symbol) {
         nft = new NFT(_name, _symbol);
     }
-    
+    /*
+    function create(string memory _name, string memory _symbol) external onlyOwner() {
+        nft = new NFT(_name, _symbol);
+    }
+    */
     function mint(address _to, uint256 _tokenId, string memory _tokenURI) external onlyOwner() {
         nft.mint(_to, _tokenId, _tokenURI);
     }
@@ -29,5 +34,6 @@ contract Monsters is Ownable {
     function getTokenURI(uint256 _tokenId) external view returns (string memory) {
         return nft.tokenURI(_tokenId);
     }
-    
 }
+
+// Contract address Rinkeby: 0x0f7cEB1B6eb3D72D18e0120bF95Fa5b24486B1C3
