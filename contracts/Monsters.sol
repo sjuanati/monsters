@@ -3,6 +3,7 @@ pragma solidity ^0.8.1;
 
 import "./access/Ownable.sol";
 import "./token/ERC721/ERC721.sol";
+import "./ProxyRegistry.sol";
 
 /**
  * @title   NFT
@@ -16,13 +17,19 @@ contract Monsters is ERC721, Ownable {
 
     // Base URI
     string private _baseURIextended;
-    
-    // tokenID counter
-    uint256 public counterId = 1;
 
-    constructor(string memory _name, string memory _symbol)
-        ERC721(_name, _symbol)
-    {}
+    // tokenID counter
+    uint256 private _currentTokenId = 1;
+
+    address proxyRegistryAddress;
+
+    constructor(
+        string memory _name,
+        string memory _symbol,
+        address _proxyRegistryAddress
+    ) ERC721(_name, _symbol) {
+        proxyRegistryAddress = _proxyRegistryAddress;
+    }
 
     function setBaseURI(string memory baseURI_) external onlyOwner() {
         _baseURIextended = baseURI_;
@@ -59,15 +66,27 @@ contract Monsters is ERC721, Ownable {
         // If there is a baseURI but no tokenURI, concatenate the tokenID to the baseURI.
         return string(abi.encodePacked(base, tokenId.toString()));
     }
-    
-    function mint(
-        address _to
-    ) external onlyOwner() {
-        _mint(_to, counterId);
-        _setTokenURI(counterId, counterId.toString());
-        counterId += 1;
+
+    function isApprovedForAll(address owner, address operator)
+        public
+        view
+        override
+        returns (bool)
+    {
+        // Whitelist OpenSea proxy contract for easy trading.
+        ProxyRegistry proxyRegistry = ProxyRegistry(proxyRegistryAddress);
+        if (address(proxyRegistry.proxies(owner)) == operator) {
+            return true;
+        }
+        return super.isApprovedForAll(owner, operator);
     }
-    
+
+    function mint(address _to) external onlyOwner() {
+        _mint(_to, _currentTokenId);
+        _setTokenURI(_currentTokenId, _currentTokenId.toString());
+        _currentTokenId += 1;
+    }
+
     function burn(uint256 tokenId) external onlyOwner() {
         _burn(tokenId);
     }
@@ -92,4 +111,6 @@ contract Monsters is ERC721, Ownable {
 // contract address:    0xEC2Dd1E167B36F6cd0a8eC1E5bFB2ADF291D9EED
 // view                 https://testnets.opensea.io/assets/0xEC2Dd1E167B36F6cd0a8eC1E5bFB2ADF291D9EED/1
 // test                 https://testnets-api.opensea.io/asset/0xEC2Dd1E167B36F6cd0a8eC1E5bFB2ADF291D9EED/1
-
+// proxyRegistryAddress
+//      rinkeby "0xf57b2c51ded3a29e6891aba85459d600256cf317";
+//      mainnet "0xa5409ec958c83c3f309868babaca7c86dcb077c1";
