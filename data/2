@@ -1,0 +1,48 @@
+{
+  "attributes": [
+    {
+      "trait_type": "Base", 
+      "value": "crab"
+    }, 
+    {
+      "trait_type": "Eyes", 
+      "value": "wink"
+    }, 
+    {
+      "trait_type": "Mouth", 
+      "value": "pleased"
+    }, 
+    {
+      "trait_type": "Level", 
+      "value": 3
+    }, 
+    {
+      "trait_type": "Stamina", 
+      "value": 11.7
+    }, 
+    {
+      "trait_type": "Personality", 
+      "value": "Sleepy"
+    }, 
+    {
+      "display_type": "boost_number", 
+      "trait_type": "Aqua Power", 
+      "value": 30
+    }, 
+    {
+      "display_type": "boost_percentage", 
+      "trait_type": "Stamina Increase", 
+      "value": 15
+    }, 
+    {
+      "display_type": "number", 
+      "trait_type": "Generation", 
+      "value": 1
+    }
+  ], 
+  "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.", 
+  "external_url": "https://openseacreatures.io/2", 
+  "image": "https://storage.googleapis.com/opensea-prod.appspot.com/creature/2.png", 
+  "name": "Boris McCoy"
+}
+
