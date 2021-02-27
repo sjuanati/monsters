@@ -36,6 +36,11 @@ contract NFT is ERC721, Ownable {
         return _baseURIextended;
     }
     
+    // Adapted for OpenSea
+    function baseTokenURI() external view returns (string memory) {
+        return _baseURIextended;
+    }
+    
     function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
         require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
 
@@ -54,7 +59,6 @@ contract NFT is ERC721, Ownable {
         return string(abi.encodePacked(base, tokenId.toString()));
     }
     
-
     function mint(
         address _to,
         uint256 _tokenId,

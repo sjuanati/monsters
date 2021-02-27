@@ -12,8 +12,6 @@ import "./token/ERC721/ERC721.sol";
 contract Monsters is Ownable {
     
     NFT public nft;
-    //TODO: manage counter to mint monsters
-    //TODO2: ability to mint in batch mode
     
     constructor(string memory _name, string memory _symbol) {
         nft = new NFT(_name, _symbol);
@@ -31,9 +29,13 @@ contract Monsters is Ownable {
         nft.setBaseURI(_baseURI);
     }
     
-    function getTokenURI(uint256 _tokenId) external view returns (string memory) {
+    function tokenURI(uint256 _tokenId) external view returns (string memory) {
         return nft.tokenURI(_tokenId);
+    }
+    
+    function baseTokenURI() external view returns (string memory) {
+        return nft.baseTokenURI();
     }
 }
 
-// Contract address Rinkeby: 0x0f7cEB1B6eb3D72D18e0120bF95Fa5b24486B1C3
+// Contract address Rinkeby: 0x88719e766Be28ede552CBDC15F7C137eD3833524
