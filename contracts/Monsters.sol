@@ -108,9 +108,11 @@ contract Monsters is ERC721, Ownable {
 }
 
 // base URL :           https://www.bitacoras.io/monsters/
-// contract address:    0xEC2Dd1E167B36F6cd0a8eC1E5bFB2ADF291D9EED
-// view                 https://testnets.opensea.io/assets/0xEC2Dd1E167B36F6cd0a8eC1E5bFB2ADF291D9EED/1
-// test                 https://testnets-api.opensea.io/asset/0xEC2Dd1E167B36F6cd0a8eC1E5bFB2ADF291D9EED/1
+// contract address:    0xf9c0A102662f99D80e60Da0e8ABA94731dbA5f62
+// view                 https://testnets.opensea.io/assets/0xf9c0A102662f99D80e60Da0e8ABA94731dbA5f62/1
+// test                 https://testnets-api.opensea.io/asset/0xf9c0A102662f99D80e60Da0e8ABA94731dbA5f62/1/validate
+// test2                https://api.opensea.io/asset/0xf9c0A102662f99D80e60Da0e8ABA94731dbA5f62/1/validate/
+// update               https://testnets-api.opensea.io/api/v1/asset/0xec2dd1e167b36f6cd0a8ec1e5bfb2adf291d9eed/1/?force_update=true
 // proxyRegistryAddress
 //      rinkeby "0xf57b2c51ded3a29e6891aba85459d600256cf317";
 //      mainnet "0xa5409ec958c83c3f309868babaca7c86dcb077c1";
